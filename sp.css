@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-igvkQ01INxN3tr6UEanLDtIto9JNkiFK4w&usqp=CAU");
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 20%;
+    color: rgb(189, 28, 28);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    width: 100%;
+    height: 150px;
+    background-color: black;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.logo {
+    width: 15%;
+    height: 145px;
+    background-color: yellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Imge {
+    width: 255%; /* Adjusted width to make it responsive */
+    height: 100%;
+    object-fit: contain;
+    padding-left: 5% ;
+}
+
+#admin-panel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(189, 187, 205, 0.935);
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    text-align: center; /* Center text */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center children horizontally */
+    justify-content: center; /* Center children vertically */
+}
+
+.OR {
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}

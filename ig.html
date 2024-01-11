@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sports Buddy</title>
+  <style>
+    body {
+      background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-igvkQ01INxN3tr6UEanLDtIto9JNkiFK4w&usqp=CAU");
+      background-size: cover;
+    background-repeat: no-repeat;
+      font-family: Arial, sans-serif;
+
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .header {
+    width: 100%;
+    height: 150px;
+    background-color: black;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.logo {
+    width: 15%;
+    height: 145px;
+    background-color: yellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Imge {
+    width: 255%; /* Adjusted width to make it responsive */
+    height: 100%;
+    object-fit: contain;
+    padding-left: 5% ;
+}
+
+    #locationSelection,
+    #locationForm,
+    #sportsInfo {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    select, button {
+      margin-top: 8px;
+      padding: 8px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+  
+  <div id="locationSelection">
+    <label for="location">Select your location:</label>
+    <select id="location" onchange="showLocationForm()">
+      <option value="" disabled selected>Select location</option>
+      <option value="hyderabad">Hyderabad</option>
+      <option value="nalgonda">Nalgonda</option>
+      <option value="medak">Medak</option>
+    </select>
+  </div>
+
+  <div id="locationForm">
+    <form>
+      <label for="city">Select your city:</label>
+      <select id="city">
+        <!-- Cities for each location -->
+      </select>
+      <button type="button" onclick="submitForm()">Submit</button>
+    </form>
+  </div>
+
+  <div id="sportsInfo">
+    <h2>Sports Complexes and Grounds</h2>
+    <ul id="sportsList">
+      <!-- Sports information will be populated here after form submission -->
+    </ul>
+  </div>
+
+  <script>
+    function showLocationForm() {
+      var locationSelection = document.getElementById("location");
+      var locationForm = document.getElementById("locationForm");
+
+      if (locationSelection.value !== "") {
+        locationForm.style.display = "block";
+        populateCities(locationSelection.value);
+      } else {
+        locationForm.style.display = "none";
+      }
+    }
+
+    function populateCities(location) {
+      var citySelect = document.getElementById("city");
+      citySelect.innerHTML = "";
+
+      var cities = getCitiesForLocation(location);
+
+      cities.forEach(function(city) {
+        var option = document.createElement("option");
+        option.value = city;
+        option.text = city;
+        citySelect.add(option);
+      });
+    }
+
+    function getCitiesForLocation(location) {
+      // Add cities based on the selected location
+      switch (location) {
+        case "hyderabad":
+          return ["Hyderabad City", "Secunderabad", "Gachibowli"];
+        case "nalgonda":
+          return ["Nalgonda City", "Miryalaguda", "Suryapet"];
+        case "medak":
+          return ["Medak City", "Siddipet", "Sangareddy"];
+        default:
+          return [];
+      }
+    }
+
+    function getSportsInfo(location, city) {
+      // You can fetch sports information from a database or an API based on the selected location and city
+      // For simplicity, a static example is used here
+      var sportsInfo = {
+        hyderabad: {
+          "Hyderabad City": [
+            { area: "Area 1", sportsComplex: "Mr.Goutham Sports Complex", location: "Location A", sports: ["Football", "Cricket"] },
+            { area: "Area 2", sportsComplex: "Sports Complex B", location: "Location B", sports: ["Basketball", "Tennis"] }
+          ],
+          Secunderabad: [
+            { area: "Area 3", sportsComplex: "Mr.Aravind Sports Complex", location: "Location C", sports: ["Badminton", "Table Tennis"] },
+            { area: "Area 4", sportsComplex: "Sports Complex D", location: "Location D", sports: ["Volleyball", "Swimming"] }
+          ],
+          Gachibowli: [
+            { area: "Area 5", sportsComplex: "Mr.Sandeep Complex E", location: "Location E", sports: ["Hockey", "Athletics"] },
+            { area: "Area 6", sportsComplex: "Sports Complex F", location: "Location F", sports: ["Golf", "Soccer"] }
+          ],
+        },
+        nalgonda: {
+          "Nalgonda City": [
+            { area: "Area 7", sportsComplex: "Mr.Rk Sports Complex", location: "Location G", sports: ["Cricket", "Badminton"] },
+            { area: "Area 8", sportsComplex: "Sports Complex H", location: "Location H", sports: ["Table Tennis", "Volleyball"] }
+          ],
+          Miryalaguda: [
+            { area: "Area 9", sportsComplex: "Mr.Ravinder Reddy Sports Complex", location: "Location I", sports: ["Basketball", "Tennis"] },
+            { area: "Area 10", sportsComplex: "Sports Complex J", location: "Location J", sports: ["Football", "Swimming"] }
+          ],
+          Suryapet: [
+            { area: "Area 11", sportsComplex: "Mr.Rajkumar Sports Complex", location: "Location K", sports: ["Athletics", "Hockey"] },
+            { area: "Area 12", sportsComplex: "Sports Complex L", location: "Location L", sports: ["Soccer", "Golf"] }
+          ],
+        },
+        medak: {
+          "Medak City": [
+            { area: "Area 13", sportsComplex: "Mr.shiva Sports Complex", location: "Location M", sports: ["Volleyball", "Table Tennis"] },
+            { area: "Area 14", sportsComplex: "Sports Complex N", location: "Location N", sports: ["Cricket", "Basketball"] }
+          ],
+          Siddipet: [
+            { area: "Area 15", sportsComplex: "Mr.Sharath Sports Complex", location: "Location O", sports: ["Tennis", "Badminton"] },
+            { area: "Area 16", sportsComplex: "Sports Complex P", location: "Location P", sports: ["Football", "Swimming"] }
+          ],
+          Sangareddy: [
+            { area: "Area 17", sportsComplex: "Mr.Kranthi Sports Complex", location: "Location Q", sports: ["Soccer", "Athletics"] },
+            { area: "Area 18", sportsComplex: "Sports Complex R", location: "Location R", sports: ["Golf", "Hockey"] }
+          ],
+        }
+      };
+
+      return sportsInfo[location][city] || [];
+    }
+
+    function displaySportsInfo(sportsData) {
+      var sportsList = document.getElementById("sportsList");
+      sportsList.innerHTML = "";
+
+      sportsData.forEach(function(sports) {
+        var listItem = document.createElement("li");
+        listItem.textContent = `Area: ${sports.area}, Sports Complex: ${sports.sportsComplex}, Location: ${sports.location}, Sports: ${sports.sports.join(", ")}`;
+        sportsList.appendChild(listItem);
+      });
+
+      document.getElementById("sportsInfo").style.display = "block";
+    }
+
+    function submitForm() {
+      var selectedLocation = document.getElementById("location").value;
+      var selectedCity = document.getElementById("city").value;
+
+      // You can customize this part to fetch sports information based on the selected location and city
+      var sportsData = getSportsInfo(selectedLocation, selectedCity);
+
+      displaySportsInfo(sportsData);
+    }
+  </script>
+</body>
+</html>
